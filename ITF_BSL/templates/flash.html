@@ -1,0 +1,13 @@
+<!-- Assigning a result of get_flashed_messages() function to a variable --> 
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <!-- Tuples that include the category of the message and message itself --> 
+        {% for category, message in messages %}
+            <div class="info-{{ category }}">
+                <!-- Category is used for styling purposes --> 
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+ 

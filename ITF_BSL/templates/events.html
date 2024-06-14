@@ -1,0 +1,95 @@
+{% extends "fill.html" %} 
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/css/events.css">
+
+<div class = "container">
+
+  <h1 class="title1">Upcoming Competitions</h1>  
+        
+  <center>
+    
+    <p1>You are doing Taekwondo and want to test your abilities? Sign up for any competition below!</p1>
+
+    <br><br>
+
+    <p style = "font-size: 20px;">Sort competitions by: </p>
+    <!-- Passing the according filter variable to the python function accoring to the user's choice -->
+    <!-- Bootstrap classes ("Bootstrap Contributors") and CSS styling is applied for appealing design -->
+    <a style = "margin-right: 10px" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+    href="{{url_for('eventpage', filter = 1)}}">Junior price</a>
+    <a style = "margin-right: 10px" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+    href="{{url_for('eventpage', filter = 2)}}">Adult price</a>
+    <a style = "margin-left: 10px" class = "link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+    href="{{url_for('eventpage', filter = 3)}}">Date</a>
+    
+  
+  </center>
+
+  {% include "flash.html" %}
+
+  {% if session['adminlogin'] == True %}
+
+    <a class="nav-link" href="{{url_for('competitioncreation')}}"><div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;"><button type="button" class="btn btn-outline-dark" href=>Create a competition</button></div></a>
+
+  {% endif %}
+
+  {% for p in range(n) %}
+
+    <div class="card text-center">
+
+      <div class="card-body">
+
+        <h5 class="card-title">{{allcompetitions[p][1]}}</h5>
+        <p class="card-text">{{allcompetitions[p][2]}}</p>
+        <p class="card-text">Date: {{allcompetitions[p][6]}}</p>
+        <p class="card-text">Price for juniors (5-17 years): {{allcompetitions[p][3]}} CHF <br> Price for adults (18+ years): {{allcompetitions[p][4]}} CHF</p>
+        <p class="card-text">Start time: {{allcompetitions[p][7]}}</p>
+        
+        <!-- Checking whether user is logged in, displaying elements if so. Checking whether he is signed up for each competition --> 
+        {% if session['userlogin'] == True and reg_check[p] == 0 %}       
+          <!-- Passing the name of competition table, where email should be added --> 
+          <a class="nav-link" href="{{url_for('signingupforcomp', competition = allcompetitions[p][8], email = session['email'])}}">
+            <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;">
+              <button type="button" class="btn btn-outline-secondary" href=>Sign up!</button>
+            </div>
+          </a>
+        {% endif %}
+
+        {% if session['userlogin'] == True and reg_check[p] == 1 %}       
+          <!-- Passing the name of competition table, where email should be removed --> 
+          <a class="nav-link" href="{{url_for('signingoutofcomp', competition = allcompetitions[p][8], email = session['email'])}}">
+            <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;">
+              <button type="button" class="btn btn-secondary" href=>Sign out</button>
+            </div>
+          </a>
+        {% endif %}
+
+        <!-- Checking whether admin is logged in. Displaying elements if so. --> 
+        {% if session['adminlogin'] == True %}       
+          <a class="nav-link" href="{{url_for('export', competition = allcompetitions[p][8])}}">
+            <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;">
+              <button type="button" class="btn btn-outline-secondary" href=>Export participants</button>
+            </div>
+          </a>
+          <a class="nav-link" href="{{url_for('delete', competition = allcompetitions[p][8])}}">
+            <div class="d-grid gap-2 col-sm-2 mx-auto" style="margin-top: 20px;">
+              <button type="button" class="btn btn-outline-secondary" href=>Delete competition</button>
+            </div>
+          </a>
+        {% endif %}
+
+      </div>
+
+      <div class="card-footer text-body-secondary">
+        Address: {{allcompetitions[p][5]}}
+      </div>
+
+    </div>   
+
+  {% endfor %}
+
+</div>
+
+{% endblock %}

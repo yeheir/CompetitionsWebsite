@@ -1,0 +1,26 @@
+{% extends "fill.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/css/admin.css">
+
+<div class = "container">
+
+  <h1 class="title1">Code below, please.</h1>
+  <center><p1>Enter a secret key.</p1></center>     
+
+  {% include "flash.html" %}
+
+  <form method = "POST">
+
+    <div class="spaces mb-3">
+      {{ form.hidden_tag() }}
+      {{ form.admin_password.label }}{{ form.admin_password(class="form-control") }}
+    </div>
+
+    {{ form.admin_login(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }} 
+
+  </form>
+</div>
+
+{% endblock %} 

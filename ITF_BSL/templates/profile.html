@@ -1,0 +1,120 @@
+{% extends "fill.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+
+<div class = "container">
+
+  {% if (session['userlogin'] == true) %}
+    <h1 class="title1">Personal profile!</h1> <!--Heading that is displayed for end users-->
+  {% endif %}
+
+  {% if (session['adminlogin'] == true) %}
+    <h1 class="title1">Welcome, admin.</h1> <!--Heading that is displayed for an admin users-->
+  {% endif %}
+
+  <!--Appearing messages that inform users about success or errors-->
+  {% include "flash.html" %}
+    
+  <!-- Below - admin and user forms that are used for changing info and password-->
+  {% if (session['userlogin'] == true) %}
+    <form method = "POST">                
+      <div class = "alert alert-light ">
+        <p1>First name: {{ session['name'] }}.</p1><br>
+        <p1>Last name: {{ session['surname'] }}.</p1><br>
+        <p1>Email: {{ session['email'] }}</p1><br>
+        <p1>Gender: {{ session['gender'] }}</p1><br>
+        <p1>Age: {{ session['age'] }} y.</p1><br>
+        <p1>Weight: {{ session['weight'] }} kg.</p1><br>
+        <p1>Belt: {{ session['displbelt'] }}</p1><br>
+      </div>
+ 
+      <br><br><br><br>
+      <center><p1>If you want to edit some of the information, use the fields below.</p1></center><br>      
+
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="mb-3 spaces2 ">        
+            {{ form.hidden_tag() }}
+            {{ form.name_change.label }} {{ form.name_change(class="form-control") }}                 
+          </div>
+        </div>
+        <div class="col-md">
+          <div class=" mb-3 spaces3">        
+            {{ form.hidden_tag() }}
+            {{ form.surname_change.label }} {{ form.surname_change(class="form-control") }}                
+          </div>
+        </div>
+      </div>
+    
+      <div class="row g-3">
+        <div class="col-md">
+          <div class="mb-3 spaces5">        
+              {{ form.hidden_tag() }}
+              {{ form.age_change.label }} {{ form.age_change(class="form-control") }}                
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="mb-3">        
+              {{ form.hidden_tag() }}
+              {{ form.weight_change.label }} {{ form.weight_change(class="form-control") }}  
+              <div id="emailHelp" class="form-text">Use the dot (75.9, 45.0, etc.) to provide a more accurate weight.</div>               
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="mb-3 spaces4">        
+              {{ form.hidden_tag() }}
+              {{ form.belt_change.label }} {{ form.belt_change(class="form-select") }}                 
+          </div>
+        </div>
+      </div>
+
+      {{ form.change(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }}
+
+    </form>
+
+    <form method = "POST">
+      <br><br><br>
+      <center><p1>If you want to change the password, use the fields below.</p1></center><br>
+
+      <div class="mb-3 spaces">
+        {{ form1.hidden_tag() }}
+        {{ form1.user_old.label }}{{ form1.user_old(class="form-control") }}
+      </div>
+
+      <div class="mb-3 spaces">
+        {{ form1.hidden_tag() }}
+        {{ form1.user_new.label }}{{ form1.user_new(class="form-control") }}
+      </div>
+
+      {{ form1.user_pass_change(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }}
+      <br>   
+
+    </form>
+
+  {% endif %}
+
+  {% if (session['adminlogin'] == true) %}        
+    <form method = "POST">
+      <center><p1>If you want to change the password, use the fields below.</p1></center><br>
+
+      <div class="mb-3 spaces">
+        {{ form2.hidden_tag() }}
+        {{ form2.admin_old.label }}{{ form2.admin_old(class="form-control") }}
+      </div>
+
+      <div class="mb-3 spaces">
+        {{ form2.hidden_tag() }}
+        {{ form2.admin_new.label }}{{ form2.admin_new(class="form-control") }}
+      </div>
+
+      {{ form2.admin_pass_change(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }}
+
+    </form>  
+
+  {% endif %}
+  
+</div>
+
+{% endblock %}

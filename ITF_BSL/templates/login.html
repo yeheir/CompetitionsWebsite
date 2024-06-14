@@ -1,0 +1,55 @@
+{% extends "fill.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/css/login.css">
+
+<div class = "container">
+
+  <h1 class="title1">Welcome back!</h1>
+  <center><p1>Fill in the fields below to log into your account.</p1></center>     
+  
+  <!--Appearing messages that inform users about success|errors|general info-->
+  {% include "flash.html" %}
+  
+  <form method = "POST">
+
+    <div class="mb-3 spaces">
+      <!--Generating a hidden CSRF token field to provide security-->
+      {{ form.hidden_tag() }}
+      <!--Generating a form to enter the user email-->
+      <!--form-control class is a Bootstrap styling class used for appearance-->
+      {{ form.login_email.label }}{{ form.login_email(class="form-control") }}
+    </div>
+ 
+    <div class="mb-3 spaces">
+      {{ form.hidden_tag() }}
+      <!--Generating a form to enter the user password-->
+      {{ form.login_password.label }}{{ form.login_password(class="form-control") }}
+    </div>
+    <!--Generating a submit button-->
+    {{ form.login(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }}
+    <br><br><br> 
+  </form>
+
+  <center><p2>Don't have an account?</p2></center>
+
+  <a class="nav-link" href="{{url_for('registerpage')}}">
+    <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;">
+      <button type="button" class="btn btn-outline-dark" href=>Register</button>
+    </div>
+  </a>    
+
+  <br><br><br>
+
+  <center><p2>You are an admin?</p2></center>   
+
+  <a class="nav-link" href="{{url_for('adminpage')}}">
+    <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: 20px;">
+      <button type="button" class="btn btn-outline-dark" href=>Admin login</button>
+    </div>
+  </a>
+
+</div>
+
+{% endblock %}

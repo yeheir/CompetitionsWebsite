@@ -1,0 +1,66 @@
+{% extends "fill.html" %} 
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="../static/css/competition.css">
+
+<div class = "container">
+
+  <h1 class="title1">Create a new competition.</h1>
+  <center><p1>Fill in the information below.</p1></center>
+
+  {% include "flash.html" %}
+  
+  <!-- Form for entering info about a competition -->
+  <form method="POST">
+
+    <div class="mb-3 spaces">    
+      {{ form.hidden_tag() }}
+      {{ form.caption.label }}{{ form.caption(class="form-control") }}    
+    </div>   
+
+    <div class="mb-3 spaces">    
+      {{ form.hidden_tag() }}
+      {{ form.description.label }}{{ form.description(class="form-control") }}    
+    </div>  
+
+    <div class="mb-3 spaces">    
+      {{ form.hidden_tag() }}
+      {{ form.address.label }}{{ form.address(class="form-control") }}    
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-2 spaces5">
+        <div class="mb-4">        
+          {{ form.hidden_tag() }}
+          {{ form.price1.label }} {{ form.price1(class="form-control") }}                
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">        
+          {{ form.hidden_tag() }}
+          {{ form.price2.label }} {{ form.price2(class="form-control") }}                 
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">        
+          {{ form.hidden_tag() }}
+          {{ form.date.label }} {{ form.date(class="form-control") }}
+        <div id="emailHelp" class="form-text">Date format: dd.mm.yyyy</div>                 
+      </div>
+    </div>
+
+    <div class="col-md spaces4">
+      <div class="mb-4">        
+          {{ form.hidden_tag() }}
+          {{ form.time.label }} {{ form.time(class="form-control") }} 
+          <div id="emailHelp" class="form-text">Time format: hh:mm</div>                
+      </div>
+    </div>
+
+    {{ form.create(class="d-grid gap-2 col-6 mx-auto btn btn-outline-secondary") }}
+
+  </form> 
+</div> 
+
+{% endblock %}

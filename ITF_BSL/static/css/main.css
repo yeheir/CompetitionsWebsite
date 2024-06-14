@@ -1,0 +1,13 @@
+.main-part{
+    padding: 40px;
+}
+.main-part{
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: azure;
+}
+.leftimg{
+    float: left;
+    margin-right: 20px;
+    width: 30%;
+}

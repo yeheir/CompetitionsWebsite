@@ -1,0 +1,45 @@
+.title1{
+    text-align: center;
+    font-family: 'Exo', sans-serif;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.nav-item{
+    padding-left: 20px;
+}
+p1{
+    font-family: 'Exo', sans-serif;
+    font-size: 24px;
+}
+.info-alert{
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: rgb(230, 173, 173);    
+    border: 2px solid rgb(255, 0, 0);
+}
+.info-success{
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: rgb(173, 230, 175);
+    border: 2px solid rgb(0, 255, 0);
+}
+.info-info{
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: rgb(173, 184, 230);
+    border: 2px solid rgb(0, 76, 255);
+}
+.spaces{
+    margin: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+}

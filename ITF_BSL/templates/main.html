@@ -1,0 +1,35 @@
+<!--Using another HTMl template (fill.html) as a basis for others HMTL templates -->
+<!--Is used to keep the code clear and eliminate unneccesary redundancy/repition -->
+{% extends "fill.html" %}
+
+{% block content %}
+
+<!--Linking the CSS style sheet that containes certain styling for HTML elements-->
+<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+<div class = "container">
+
+    <h1 class="title1">Welcome to ITF Switzerland!</h1>
+
+    <!--Appearing messages that inform users about success|errors|general info-->
+    {% include "flash.html" %}
+
+    <img src="../static/img/competitior.jpg" alt="image not found" class = "leftimg">
+
+    <p1>Taekwondo ITF is a Korean martial art founded by General Choi Hong Hi in 1955.
+        It focuses on self-defense techniques, patterns called "Tuls," and sparring.
+        "Tuls" are choreographed movements that help students practice various techniques.
+        Sparring can be non-contact or full-contact, depending on skill level.</p1>
+        
+    <br><br>    
+ 
+    <p1>The martial art places importance on traditional values and discipline.
+        ITF Taekwondo also includes a promotion and grading system, where students
+        advance through colored belts, reflecting their skill development and proficiency.
+        This martial art not only enhances physical fitness but also instills mental
+        discipline, respect, and self-confidence in practitioners.</p1>
+
+</div>
+
+{% endblock %}
+
